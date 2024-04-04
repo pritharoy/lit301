@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <title>Points on a map</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body { 
+        margin: 0; 
+        padding: 0; 
+      }
+
+      #map { 
+        position: absolute; 
+        top: 0; 
+        bottom: 0; 
+        width: 100%; 
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id='map'></div>
+    <script>
+    // The value for 'accessToken' begins with 'pk...'
+    mapboxgl.accessToken = 'pk.eyJ1IjoicHJpdGhhcm95IiwiYSI6ImNsdDJxZzc4ZTAwcm0ya3MzM3A5enM3cGQifQ.bQ6Jk2b2jGcnP2AGWv446w'; 
+    const map = new mapboxgl.Map({
+      container: 'map',
+      // Replace YOUR_STYLE_URL with your style URL.
+      style: 'mapbox://styles/pritharoy/clu0tn0m0006z01qwevnvawwr', 
+      center: [13.828,77.850],
+      zoom: 2.10
+    });
+
+    // Code from the next step will go here.
+/* 
+Add an event listener that runs
+  when a user clicks on the map element.
+*/
+map.on('click', (event) => {
+  // If the user clicked on one of your markers, get its information.
+  const features = map.queryRenderedFeatures(event.point, {
+    layers: ['lit301-digital-mapping'] // replace with your layer name
+  });
+  if (!features.length) {
+    return;
+  }
+  const feature = features[0];
+
+  // Code from the next step will go here.
+
+/* 
+    Create a popup, specify its options 
+    and properties, and add it to the map.
+  */
+  const place_name1 = { // Your GeoJSON data as a feature object
+    "type": "Feature",
+    "properties": {
+      "mapbox_id": "dXJuOm1ieHBsYzpBaVI4",
+      "wikidata": "Q8684",
+      "short_code": "KR-11",
+      "place_name": "Seoul, South Korea",
+      "Location": "Seoul",
+      "Relevance": "Course Content",
+      "Text Studied": "Sang Young Park's Love in the Big City",
+      "Link to project": "https://uploads.knightlab.com/storymapjs/5130bdf451245237818bf8c74c9f5b76/love-in-a-big-city-seoul/draft.html\""
+    },
+    "geometry": {
+      "coordinates": [
+        126.978291,
+        37.566679
+      ],
+      "type": "Point"
+    },
+  };
+  const place_name2 = { // Your GeoJSON data as a feature object
+    "type": "Feature",
+    "properties": {
+      "mapbox_id": "dXJuOm1ieHBsYzpBaVI4",
+      "wikidata": "Q8684",
+      "short_code": "KR-11",
+      "place_name": "Seoul, South Korea",
+      "Location": "Seoul",
+      "Relevance": "Course Content",
+      "Text Studied": "Sang Young Park's Love in the Big City",
+      "Link to project": "https://uploads.knightlab.com/storymapjs/5130bdf451245237818bf8c74c9f5b76/love-in-a-big-city-seoul/draft.html\""
+    },
+    "geometry": {
+      "coordinates": [
+        126.978291,
+        37.566679
+      ],
+      "type": "Point"
+    }
+  };
+  const place_name3 = {
+  "type": "Feature",
+  "properties": {
+    "mapbox_id": "dXJuOm1ieHBsYzpCSWhy",
+    "wikidata": "Q1070",
+    "place_name": "Ahmedabad, Gujarat, India",
+    "Location": "Ahmedabad",
+    "Text Studied": "Esther David's Ahmedabad: City with a Past",
+    "Relevance": "Course Content",
+    "Link to project": "https://uploads.knightlab.com/storymapjs/08058c29387f0fe9b0240204b0025327/ahmedabad-home-the-past-and-the-present/draft.html"
+  },
+  "geometry": {
+    "coordinates": [
+      72.579707,
+      23.021624
+    ],
+    "type": "Point"
+  }
+};
+
+const place_name4 ={
+  "type": "Feature",
+  "properties": {
+    "Relevance": "Scope of Course"
+  },
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          72.384924,
+          22.761485
+        ],
+        [
+          74.289743,
+          31.537725
+        ],
+        [
+          55.422194,
+          25.399407
+        ],
+        [
+          28.169067,
+          -26.530499
+        ],
+        [
+          104.163363,
+          1.292529
+        ],
+        [
+          126.938674,
+          37.522376
+        ],
+        [72.384924, 22.761485]
+      ]
+    ],
+    "type": "Polygon"
+  }
+};
+
+const place_name5 = {
+  "type": "Feature",
+  "properties": {
+    "mapbox_id": "dXJuOm1ieHBsYzpBZVlJL2c",
+    "wikidata": "Q34647",
+    "place_name": "Johannesburg, Gauteng, South Africa",
+    "Location": "Johannesburg",
+    "Relevance": "",
+    "Text Studied": "To-add"
+  },
+  "geometry": {
+    "coordinates": [
+      28.049722,
+      -26.205
+    ],
+    "type": "Point"
+  }
+};
+
+const place_name6 = {
+  "type": "Feature",
+  "properties": {
+    "mapbox_id": "dXJuOm1ieHBsYzpBU2kw",
+    "wikidata": "Q11739",
+    "place_name": "Lahore, Punjab, Pakistan",
+    "Location": "Lahore",
+    "Text Studied": "Moni Mohsin's The Diary of a Social Butterfly",
+    "Relevance": "Course Content",
+    "Link to project": "https://uploads.knightlab.com/storymapjs/c10558b5788060bd89d9b70b09a9427e/lit301/index.html"
+  },
+  "geometry": {
+    "coordinates": [
+      74.314183,
+      31.565682
+    ],
+    "type": "Point"
+  }
+};
+
+const place_name7 = {
+  "type": "Feature",
+  "properties": {
+    "mapbox_id": "dXJuOm1ieHBsYzpCYWdE",
+    "wikidata": "Q612",
+    "place_name": "Dubai, Dubai, United Arab Emirates",
+    "Location": "Dubai",
+    "Relevance": "",
+    "Text Studied": "To-add"
+  },
+  "geometry": {
+    "coordinates": [
+      55.292491,
+      25.265347
+    ],
+    "type": "Point"
+  }
+}
+
+  const popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML(
+      `<h3>${feature.properties.place_name}</h3>
+      <p><b>Relevance:</b> ${feature.properties.Relevance}</p>
+      <p><b>Text Studied:</b> ${feature.properties["Text Studied"]}</p>
+      <p><a href="${feature.properties["Link to project"]}">Link to Project</a></p>`
+    )
+    .addTo(map);
+
+})
+
+
+
+
+;
+    </script>
+  </body>
+</html>
